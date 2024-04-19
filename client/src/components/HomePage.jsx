@@ -18,7 +18,7 @@ const HomePage = () => {
 				) : (
 					<div className="w-screen h-screen flex flex-col justify-center items-center gap-2">
 						<form
-							className="flex flex-col gap-1 border-2"
+							className="flex flex-col gap-1"
 							onSubmit={() => {
 								!username == "" && !room == "" && setChatActive(true);
 							}}
