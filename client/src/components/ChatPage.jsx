@@ -36,14 +36,19 @@ const ChatPage = ({ socket, username }) => {
         </Alert>
       );
     }
-
+    const makeId = () => {
+      return (
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15)
+      );
+    };
     const messageData = {
       message: messageInput,
       username: username,
       time: `${new Date(Date.now()).getHours()}:${new Date(
         Date.now()
       ).getMinutes()}`,
-      id: Math.random() * 1000,
+      id: makeId(),
     };
 
     socket.emit("send-message", messageData);

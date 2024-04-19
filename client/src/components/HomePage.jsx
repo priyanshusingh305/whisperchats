@@ -4,7 +4,8 @@ import { useState } from "react";
 import ChatPage from "./ChatPage";
 import { Button } from "./ui/button";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect(process.env.NEXT_PUBLIC_API_URL);
+
 const HomePage = () => {
   const [username, setUsername] = useState("");
   const [chatActive, setChatActive] = useState(false);
