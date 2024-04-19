@@ -7,7 +7,7 @@ async headers() {
       headers: [
         {
           key: 'Access-Control-Allow-Origin',
-          value: 'https://whisperchats.vercel.app/',
+          value: process.env.NEXT_PUBLIC_API_URL,
         },
       ],
     },
