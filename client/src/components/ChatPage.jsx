@@ -27,14 +27,7 @@ const ChatPage = ({ socket, username }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (messageInput == "") {
-      return (
-        <Alert>
-          <AlertTitle>Heads up!</AlertTitle>
-          <AlertDescription>
-            You can add components and dependencies to your app using the cli.
-          </AlertDescription>
-        </Alert>
-      );
+      return 
     }
     const makeId = () => {
       return (
@@ -68,7 +61,7 @@ const ChatPage = ({ socket, username }) => {
   return (
     <div className="rounded-md p-2 w-full md:w-[80vw] lg:w-[40vw]">
       <h1 className="text-center font-bold text-2xl my-2 uppercase">
-        {username}'s Chat Room
+        {`${username}'s Chat Room`}
       </h1>
 
       <ChatBox messages={messages} username={username} />
