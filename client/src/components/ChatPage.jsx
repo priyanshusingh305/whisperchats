@@ -27,7 +27,7 @@ const ChatPage = ({ socket, username }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (messageInput == "") {
-      return 
+      return;
     }
     const makeId = () => {
       return (
@@ -86,7 +86,7 @@ const ChatPage = ({ socket, username }) => {
             onTouchEnd={handleStopRecording}
             className={`border-none bg-transparent w-10 p-3 rounded-full hover:bg-gray-500 ${
               isRecording &&
-              "bg-gray-700 text-white px-3 py-2 rounded-md hover:bg-gray-700"
+              "bg-red-700 text-white px-3 py-2 rounded-md hover:bg-red-700"
             }`}
           >
             <IconMicrophone className="font-bold text-2xl" />
