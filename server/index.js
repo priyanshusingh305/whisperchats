@@ -51,8 +51,10 @@ const openai = new OpenAI({
 app.use(cors());
 app.use(express.json());
 app.post("/api/speechToText", async (req, res) => {
-  const { audio } = req.body;
-  const base64Audio = Buffer.from(audio, "base64");
+  if (!req.body || !req.body.audio) {
+    return res.status(400).json({ error: "No audio data provided." });
+  }
+  const base64Audio = Buffer.from(req.body.audio, "base64");
   const filePath = "input.wav";
   try {
     console.log("working");
@@ -61,11 +63,26 @@ app.post("/api/speechToText", async (req, res) => {
     const data = await openai.audio.transcriptions.create({
       file: readStream,
       model: "whisper-1",
+      connectionTimeout: 1000,
+    }).catch((error) => {
+      if (error.code === "ECONNRESET") {
+        return res
+          .status(500)
+          .json({ error: "Connection to OpenAI timed out." });
+      } else {
+        throw error;
+      }
     });
-    fs.unlinkSync(filePath);
+    await fs.unlinkSync(filePath);
+    console.log(data);
     res.json(data);
   } catch (error) {
     console.error("Error processing audio:", error);
-    return error;
+    if (!req.body.audio) {
+      return res.status(400).json({ error: "No audio data provided." });
+    }
+    res.status(500).json({ error: "Error processing audio." });
   }
 });
+
+
