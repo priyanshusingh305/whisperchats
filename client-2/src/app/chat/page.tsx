@@ -4,12 +4,12 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import ChatInput from "../../components/chat-input";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 
-const socket = io(process.env.NEXT_PUBLIC_API_URL);
+
+const socket = io(process.env.NEXT_PUBLIC_API_URL || "", {});
 
 const Chat = () => {
-	const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
 	const [room, setRoom] = useState("");
 	const [chatActive, setChatActive] = useState(false);
 	return (
