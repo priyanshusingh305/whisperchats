@@ -96,6 +96,7 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
 					onMouseDown={() => startRecording()}
 					onTouchStart={() => startRecording()}
 					onTouchEnd={() => stopRecording()}
+					onTouchCancel={() => stopRecording()}
 					onMouseUp={() => stopRecording()}
 					onMouseLeave={() => stopRecording()}
 					disabled={recording}
