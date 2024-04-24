@@ -62,6 +62,7 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
         <Input
           placeholder="Type your message here..."
           type="text"
+					value={messageInput}
           onChange={(e) => {
             setMessageInput(e.target.value);
           }}
