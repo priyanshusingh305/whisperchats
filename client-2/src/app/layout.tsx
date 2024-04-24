@@ -24,17 +24,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-      <div className="h-full w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"/>
 
-				<div className="absolute top-4 right-4">
-					<ModeToggle />
-				</div>
+			<body className={cn("min-h-screen bg-background font-sans antialiased select-none", fontSans.variable)}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-					{children}
+					<div className="min-h-screen h-full w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
+						<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+						<div className="absolute top-4  right-4 z-10">
+							<ModeToggle />
+						</div>
+						{children}
+					</div>
 				</ThemeProvider>
-    </div>
 			</body>
 		</html>
 	);
