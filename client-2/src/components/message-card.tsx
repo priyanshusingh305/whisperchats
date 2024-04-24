@@ -1,4 +1,7 @@
-export default function MessageCard({ message, username }: { message: { id: string; message: string; username:string; time: string }, username: string }) {
+export default function MessageCard({
+	message,
+	username,
+}: { message: { id: string; message: string; username: string; time: string }; username: string }) {
 	return (
 		<div
 			key={message.id}
@@ -7,9 +10,12 @@ export default function MessageCard({ message, username }: { message: { id: stri
 			<div className="bg-gray-500 flex justify-center items-center rounded-l-md">
 				<h3 className="font-bold text-lg px-2 ">{message.username.charAt(0).toUpperCase()}</h3>
 			</div>
-			<div className="px-2 bg-zinc-50 dark:bg-zinc-900 rounded-md">
+			<div className="px-2 bg-zinc-50 dark:bg-zinc-900 rounded-md h-full ">
 				<span className="text-sm">{message.username}</span>
-				<p className="font-bold">{message.message}</p>
+				<span className=" flex flex-wrap">
+					<p className="font-bold ">{message.message}</p>
+				</span>
+
 				<span className="text-xs text-right">{message.time}</span>
 			</div>
 		</div>
