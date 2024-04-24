@@ -17,7 +17,7 @@ const Chat = () => {
 			{chatActive ? (
 				<ChatInput socket={socket} username={username} room={room} />
 			) : (
-				<div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+				<div className="max-w-md md:w-[25vw] w-[90%] mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
 					<form
 						className="my-8"
 						onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
