@@ -7,6 +7,8 @@ const fontSans = FontSans({
 	subsets: ["latin"],
 	variable: "--font-sans",
 });
+import SessionWrapper from "../../components/SessionWrapper";
+
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -23,6 +25,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
+		<SessionWrapper>
 		<html lang="en">
 
 			<body className={cn("min-h-screen bg-background font-sans antialiased select-none", fontSans.variable)}>
@@ -37,5 +40,6 @@ export default function RootLayout({
 				</ThemeProvider>
 			</body>
 		</html>
+		</SessionWrapper>
 	);
 }
