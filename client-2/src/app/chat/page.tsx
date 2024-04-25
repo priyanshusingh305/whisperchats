@@ -14,12 +14,7 @@ const Chat = () => {
 	const [room, setRoom] = useState("");
 	const [chatActive, setChatActive] = useState(false);
 	const { data: session } = useSession();
-	useEffect(() => {
-		return () => {
-			setUsername(session?.user?.email?.split("@")[0] ?? "");
-			console.log(session);
-		};
-	}, [session]);
+
 
 	return (
 		<div className="flex items-center justify-center flex-col gap-2">
@@ -42,7 +37,7 @@ const Chat = () => {
 								}}
 							>
 								<div className="flex flex-col space-y-4">
-									<Input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+									<Input placeholder="Username" value={username.length>0?username:session?.user?.email?.split("@")[0]} onChange={(e) => setUsername(e.target.value)} />
 									<Input placeholder="Room" onChange={(e) => setRoom(e.target.value)} />
 									<button
 										className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
