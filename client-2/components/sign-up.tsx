@@ -41,7 +41,7 @@ const Dashboard = () => {
 				</>
 			) : (
 				<>
-					<div className="max-w-md w-[90%] mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black ">
+					<div className="md:max-w-md w-[70vw]  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black ">
 						<h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">Welcome to Whisperchats</h2>
 						<p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
 							Login to whisperchats with your favorite social media platform

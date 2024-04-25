@@ -91,14 +91,12 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
 				/>
 
 				<button
-					className={`relative group/btn flex space-x-2 items-center justify-start px-4  text-black rounded-md h-10 font-medium shadow-input  dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] ${recording ? "bg-red-500 dark:bg-red-900 animate-bounce" : "bg-gray-50 dark:bg-zinc-900"}`}
+					className={`relative group/btn flex space-x-2 items-center justify-start px-4  text-black rounded-md h-10 font-medium shadow-input  dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] ${recording ? "bg-red-500 dark:bg-red-900 animate-pulse" : "bg-gray-50 dark:bg-zinc-900"}`}
 					type="submit"
 					onMouseDown={() => startRecording()}
 					onTouchStart={() => startRecording()}
 					onTouchEnd={() => stopRecording()}
 					onMouseUp={() => stopRecording()}
-					onMouseLeave={() => stopRecording()}
-					disabled={recording}
 				>
 					<span className="text-neutral-700 dark:text-neutral-300 text-sm">
 						{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
