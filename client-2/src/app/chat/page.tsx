@@ -19,7 +19,7 @@ const Chat = () => {
 			setUsername(session?.user?.email?.split("@")[0] ?? "");
 			console.log(session);
 		};
-	}, []);
+	}, [session]);
 
 	return (
 		<div className="flex items-center justify-center flex-col gap-2">
@@ -53,37 +53,32 @@ const Chat = () => {
 									</button>
 								</div>
 							</form>
-							
 						</div>
 					)}
 					<div className="top-0 right-0">
-				<button
-				type="button"
-				className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-
-				onClick={() => signOut({})}
-			>
-				<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign Out</span>
-				<BottomGradient />
-			</button>
-			</div>
+						<button
+							type="button"
+							className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+							onClick={() => signOut({})}
+						>
+							<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign Out</span>
+							<BottomGradient />
+						</button>
+					</div>
 				</>
 			) : (
 				<div>
-				<Link href="/">
-<button
-				type="button"
-				className=" relative  group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-			>
-								<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign In</span>
-				<BottomGradient />
-	
-					</button>
+					<Link href="/">
+						<button
+							type="button"
+							className=" relative  group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+						>
+							<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign In</span>
+							<BottomGradient />
+						</button>
 					</Link>
-					</div>
+				</div>
 			)}
-
-
 		</div>
 	);
 };
