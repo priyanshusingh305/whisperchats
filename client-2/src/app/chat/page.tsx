@@ -20,7 +20,7 @@ const Chat = () => {
 			setUsername(session?.user?.email?.split("@")[0] ?? "");
 			console.log(session);
 		};
-	}, []);
+	}, [session]);
 
 	return (
 		<div className="flex items-center justify-center flex-col gap-2">
