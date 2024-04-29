@@ -5,8 +5,7 @@ import { Socket } from "socket.io-client";
 import ChatBox from "./chat-box";
 import { Input } from "./ui/input";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
-import { useWhisper } from '@chengsokdara/use-whisper'
-
+import { useWhisper } from "@chengsokdara/use-whisper";
 
 interface Message {
 	id: string;
@@ -18,26 +17,16 @@ interface Message {
 export default function ChatInput({ socket, username, room }: { socket: Socket; username: string; room: string }) {
 	const [messageInput, setMessageInput] = useState("");
 	const [messages, setMessages] = useState<Message[]>([]);
-	const {
-    recording,
-    speaking,
-    transcribing,
-    transcript,
-    pauseRecording,
-    startRecording,
-    stopRecording,
-		
-  } = useWhisper({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, 
+	const { recording, speaking, transcribing, transcript, pauseRecording, startRecording, stopRecording } = useWhisper({
+		apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 		whisperConfig: {
-			language: 'en',
-    },
-  })
+			language: "",
+		},
+	});
 
 	useEffect(() => {
 		setMessageInput(transcript.text as string);
 	}, [transcript]);
-
 
 	useEffect(() => {
 		if (socket) {
@@ -82,7 +71,7 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
 				onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
 			>
 				<Input
-					placeholder={speaking ? "Listening..." : (transcribing ? "Transcribing..." : "Type your message here...")}
+					placeholder={speaking ? "Listening..." : transcribing ? "Transcribing..." : "Type your message here..."}
 					type="text"
 					value={messageInput}
 					onChange={(e) => {
@@ -91,7 +80,9 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
 				/>
 
 				<button
-					className={`relative group/btn flex space-x-2 items-center justify-start px-4  text-black rounded-md h-10 font-medium shadow-input  dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] ${recording ? "bg-red-500 dark:bg-red-900 animate-pulse" : "bg-gray-50 dark:bg-zinc-900"}`}
+					className={`relative group/btn flex space-x-2 items-center justify-start px-4  text-black rounded-md h-10 font-medium shadow-input  dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] ${
+						recording ? "bg-red-500 dark:bg-red-900 animate-pulse" : "bg-gray-50 dark:bg-zinc-900"
+					}`}
 					type="submit"
 					onMouseDown={() => startRecording()}
 					onTouchStart={() => startRecording()}
