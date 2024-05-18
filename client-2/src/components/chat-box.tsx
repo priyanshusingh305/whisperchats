@@ -20,10 +20,10 @@ export default function ChatBox<Props extends { messages: Message[]; username: s
 }: Props) {
 	return (
 		<ScrollArea
-			className="md:h-[80vh] h-[70vh] md:w-[30vw]  rounded-md border p-4 shadow-inner bg-gray-50 dark:bg-[#000000] "
+			className="md:h-[80vh] h-[70vh] md:w-[30vw]  rounded-md border p-2 shadow-inner bg-gray-50 dark:bg-[#000000] "
 			type="scroll"
 		>
-			<div className="p-2">
+			<div className="">
 				{messages.length === 0 && <h3 className="text-center">No messages yet</h3>}
 				{messages.map((message: Message) => {
 					return <MessageCard message={message} username={username} key={message.id} />;
