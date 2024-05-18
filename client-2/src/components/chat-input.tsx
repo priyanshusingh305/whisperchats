@@ -83,7 +83,7 @@ export default function ChatInput({ socket, username, room }: { socket: Socket; 
 					className={`relative group/btn flex space-x-2 items-center justify-start px-4  text-black rounded-md h-10 font-medium shadow-input  dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] ${
 						recording ? "bg-red-500 dark:bg-red-900 animate-pulse" : "bg-gray-50 dark:bg-zinc-900"
 					}`}
-					type="submit"
+					type="button"
 					onMouseDown={() => startRecording()}
 					onTouchStart={() => startRecording()}
 					onTouchEnd={() => stopRecording()}
