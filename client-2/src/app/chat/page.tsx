@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import ChatInput from "../../components/chat-input";
 import { Input } from "@/components/ui/input";
-import { signOut, useSession } from "next-auth/react";
-import { redirect } from 'next/navigation'
-
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const socket = io(process.env.NEXT_PUBLIC_API_URL || "", {});
 
@@ -17,10 +16,8 @@ const Chat = () => {
 	const { data: session } = useSession();
 
 	useEffect(() => {
-	
-			setUsername(session?.user?.email?.split("@")[0] ?? "");
-			console.log(session);
-		
+		setUsername(session?.user?.email?.split("@")[0] ?? "");
+		console.log(session);
 	}, [session]);
 
 	return (
@@ -57,20 +54,9 @@ const Chat = () => {
 							</form>
 						</div>
 					)}
-					<div className="top-0 right-0">
-						<button
-							type="button"
-							className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-							onClick={() => signOut({})}
-						>
-							<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign Out</span>
-							<BottomGradient />
-						</button>
-					</div>
 				</>
 			) : (
-				redirect('/')
-				
+				redirect("/")
 			)}
 		</div>
 	);
