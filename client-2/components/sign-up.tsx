@@ -1,7 +1,7 @@
 "use client";
 import { IconBrandGoogle } from "@tabler/icons-react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from 'next/navigation'
 
 
 const BottomGradient = () => {
@@ -19,27 +19,8 @@ const Dashboard = () => {
 	return (
 		<>
 			{session ? (
-				<>
-				          <Link href="/chat">
-          <button
-						className=" relative group/btn  flex space-x-2 items-center justify-start px-4 md:w-[15vw] w-[40vw] text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-						type="button"
-	
-					>
-						<span className="text-neutral-700 dark:text-neutral-300 text-sm">Continue to Chat</span>
-						<BottomGradient />
-					</button>
-          </Link>
-					<button
-						className=" relative group/btn  flex space-x-2 items-center justify-start px-4 md:w-[15vw] w-[40vw] text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-						type="button"
-						onClick={() => signOut({})}
-					>
-						<span className="text-neutral-700 dark:text-neutral-300 text-sm">Sign Out</span>
-						<BottomGradient />
-					</button>
-
-				</>
+				
+				redirect('/chat')
 			) : (
 				<>
 					<div className="md:max-w-md w-[70vw]  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black ">
