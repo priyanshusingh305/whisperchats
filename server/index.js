@@ -7,7 +7,6 @@ const OpenAI = require("openai");
 const fs = require("fs");
 require("dotenv").config();
 
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -18,10 +17,22 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log(`user connected ${socket.id}`);
+
+  socket.on("join-room", (room) => {
+    console.log(`User joined room ${room}`);
+    socket.join(room);
+    // Store the room information in the socket object for later use
+    socket.currentRoom = room;
+  });
+
   socket.on("send-message", (message) => {
     console.log(message);
-    //broadcast message to all connected users
-    io.emit("receive-message", message);
+    // Broadcast the message to all users in the current room
+    if (socket.currentRoom) {
+      io.to(socket.currentRoom).emit("receive-message", message);
+    } else {
+      console.log("Error: User not in any room.");
+    }
   });
 
   socket.on("disconnect", () => {
@@ -43,19 +54,18 @@ app.post("/api/speechToText", async (req, res) => {
   const { audio } = req.body;
   const base64Audio = Buffer.from(audio, "base64");
   const filePath = "input.wav";
-  //console.log("body",req.body);
   try {
-   console.log( "working")
-  fs.writeFileSync(filePath, base64Audio);
-  const readStream = fs.createReadStream(filePath);
-  const data = await openai.audio.transcriptions.create({
-    file: readStream,
-    model: "whisper-1",
-  });
-  fs.unlinkSync(filePath);
-  res.json(data);
-} catch (error) {
-      console.error("Error processing audio:", error);
-        return error;
-}
+    console.log("working");
+    fs.writeFileSync(filePath, base64Audio);
+    const readStream = fs.createReadStream(filePath);
+    const data = await openai.audio.transcriptions.create({
+      file: readStream,
+      model: "whisper-1",
+    });
+    fs.unlinkSync(filePath);
+    res.json(data);
+  } catch (error) {
+    console.error("Error processing audio:", error);
+    return error;
+  }
 });
